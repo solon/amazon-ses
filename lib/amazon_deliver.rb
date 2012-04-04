@@ -3,7 +3,7 @@ module AmazonDeliver
   def self.get(amazon_email)
     resource = AmazonUrlGenerator.create_query(amazon_email.from, amazon_email.to, amazon_email.subject, amazon_email.body)
 
-    date = Time.new.localtime.strftime("%a, %d %b %Y %H:%M:%S %Z")
+    date = Time.new.httpdate
     http = Net::HTTP.new("email.us-east-1.amazonaws.com", 443)
     http.use_ssl = true
     headers = {
